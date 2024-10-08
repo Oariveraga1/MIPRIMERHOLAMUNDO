@@ -1,0 +1,147 @@
+using System;
+
+class AdivinaElNumero
+{
+    static void Main(string[] args)
+    {
+        bool jugarDeNuevo = true;
+
+        while (jugarDeNuevo)
+        {
+            // 1. Pedir cantidad de jugadores
+            int jugadores = 0;
+            while (jugadores < 2 || jugadores > 4)
+            {
+                Console.WriteLine("Ingrese el número de jugadores (mínimo 2, máximo 4): ");
+                jugadores = int.Parse(Console.ReadLine());
+            }
+
+            // 2. Generar número aleatorio según la cantidad de jugadores
+            Random random = new Random();
+            int numeroAleatorio = 0;
+            if (jugadores == 2)
+                numeroAleatorio = random.Next(0, 51); // 0 a 50
+            else if (jugadores == 3)
+                numeroAleatorio = random.Next(0, 101); // 0 a 100
+            else if (jugadores == 4)
+                numeroAleatorio = random.Next(0, 201); // 0 a 200
+
+            bool numeroAdivinado = false;
+            int turno = 0;
+
+            // 3. Turnos de los jugadores
+            while (!numeroAdivinado)
+            {
+                int jugadorActual = (turno % jugadores) + 1;
+                Console.WriteLine($"Turno del jugador {jugadorActual}: Ingrese su número: ");
+                int intento = int.Parse(Console.ReadLine());
+
+                if (intento > numeroAleatorio)
+                {
+                    Console.WriteLine("MENOR");
+                }
+                else if (intento < numeroAleatorio)
+                {
+                    Console.WriteLine("MAYOR");
+                }
+                else
+                {
+                    Console.WriteLine($"¡HAS GANADO, jugador {jugadorActual}!");
+                    numeroAdivinado = true;
+                }
+                turno++;
+            }
+
+            // 4. Preguntar si desean jugar de nuevo
+            Console.WriteLine("¿Quieren jugar de nuevo? (S/N): ");
+            string respuesta = Console.ReadLine().ToUpper();
+            if (respuesta != "S")
+            {
+                jugarDeNuevo = false;
+            }
+            Console.Clear(); // Borra la consola para una nueva partida
+        }
+    }
+}
+
+
+
+       *+++++++++++++++++++++++++++++++++***************+
+     -----------------------------------------------------
+      -----_--_________________________________________________-
+ 
+
+using System;
+
+class Adivina_El_Numero
+{
+    static void Main(string[] args)
+    {
+        bool jugarotravez = true;
+
+        while (jugarotravez)
+        {
+            // Preguntar cuantas personas van a jugar
+            int jugadores = 0;
+            while (jugadores < 2 || jugadores > 4)
+            {
+                Console.WriteLine("Ingrese el número de jugadores (mínimo 2, máximo 4): ");
+                jugadores = int.Parse(Console.ReadLine());
+            }
+
+            // con la variable Random se generan numeros aleatorios.
+            Random random = new Random();
+            int numeroAleatorio = 0;
+
+            // dependiendo la cantidad de jugadores es el rango en el que se escoge el numero aleatorio.
+            //con dos jugadores el rango de numeros es entre 0 a 50
+            if (jugadores == 2)
+                numeroAleatorio = random.Next(0, 51);
+
+            //con tres jugadores el rango de numeros es entre 0 a 100
+            else if (jugadores == 3)
+                numeroAleatorio = random.Next(0, 101);
+
+            //con tuatro jugadores el rango de numeros es entre 0 a 200
+            else if (jugadores == 4)
+                numeroAleatorio = random.Next(0, 201);
+
+            bool numeroAdivinado = false;
+            int turno = 0;
+
+            // con WHILE se ejecuta el ciclo siempre y cuando no adivinen el numero.
+            while (!numeroAdivinado)
+            {
+                int jugadorActual = (turno % jugadores) + 1;
+                Console.WriteLine($"Turno del jugador {jugadorActual}: Ingrese su número: ");
+                int intento = int.Parse(Console.ReadLine());
+
+                // se usa en condicional if para responder si no gano saber si debe decir un numero mayor o menor o decirle si has ganado.
+
+                if (intento > numeroAleatorio)
+                {
+                    Console.WriteLine("MENOR");
+                }
+                else if (intento < numeroAleatorio)
+                {
+                    Console.WriteLine("MAYOR");
+                }
+                else
+                {
+                    Console.WriteLine($"¡GANASTES, jugador {jugadorActual}!");
+                    numeroAdivinado = true;
+                }
+                turno++;
+            }
+
+            // 4. Preguntar si desean jugar de nuevo
+            Console.WriteLine("¿Quieren jugar de nuevo? (S/N): ");
+            string respuesta = Console.ReadLine().ToUpper();
+            if (respuesta != "S")
+            {
+                jugarDeNuevo = false;
+            }
+            Console.Clear(); // Borra la consola para una nueva partida
+        }
+    }
+}
